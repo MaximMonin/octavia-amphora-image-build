@@ -11,7 +11,7 @@ docker run --rm --privileged --network host -v $imagedir:/image octavia-amphora 
     export DIB_CLOUD_INIT_DATASOURCES="ConfigDrive, OpenStack" && \
     export VERSION="yoga" && \
     export DISTRIBUTION="ubuntu-minimal" && \
-    export DISTRIBUTION_RELEASE="focal" && \
+    export DISTRIBUTION_RELEASE="jammy" && \
     export BRANCH="stable/$VERSION" && \
     bash diskimage-create.sh \
     -a amd64 \
