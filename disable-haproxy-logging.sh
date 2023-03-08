@@ -1,4 +1,4 @@
-#bin/bash
+#!/bin/bash
 
 # Hard Disable Octavia Amphora HAProxy logging as qcow2 image preset
 
