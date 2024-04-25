@@ -3,10 +3,7 @@
 Auto build and patch Octavia amphora image for Openstack Loadbalance Service.
 
 ### Octavia Image Notes
-Auto build turns off name service (resolv), so any outbound connections from amphora to the world do not work (apt update/install, etc...). It is done to speed up solution. To change it - ssh login to amphora and execute:
-```
-mv /etc/nsswitch.conf /etc/nsswitch.conf.bak
-```
+Auto build turns off name service (resolv), so any outbound connections from amphora to the world do not work (apt update/install, etc...). It is done to speed up solution.   
 
 Octavia injects through cloud-init:
 * /etc/octavia/amphora-agent.conf - config
@@ -22,9 +19,11 @@ Namespace amphora-haproxy used for network management (VIP + loadbalancer extren
 ip netns exec amphora-haproxy ip a
 ```
 
-### Hard disable Octavia HaProхy connection logging
-To patch Octavia amphora qcow2 image to "always disable haproxy logging" run:
-```
-disable-haproxy-logging.sh
-```
-Disabling logging can add 10-20% to loadbalancer performance in stress tests.   
+### Patch Octavia
+Few local elements added to patch Octavia Image:
+* block-device-efi - included to make sure image works under Legacy and Uefi Bios
+* haproxy-logrotate - added haproxy logs rotation
+* disable-haproxy-logging - added "always disable haproxy logging". Disabling logging can add 10-20% to loadbalancer performance in stress tests.
+* mc - install mc inside amphora   
+
+Remove elements from local elements list if you dont need this patch.

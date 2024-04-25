@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -eu
+set -o pipefail
+
+mv /tmp/30-disable-haproxy-logging.conf /etc/rsyslog.d/30-disable-haproxy-logging.conf
+chown root:root /etc/rsyslog.d/30-disable-haproxy-logging.conf
+chmod 0644 /etc/rsyslog.d/30-disable-haproxy-logging.conf

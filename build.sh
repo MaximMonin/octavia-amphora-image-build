@@ -15,6 +15,12 @@ docker run --rm --privileged --network host -v $imagedir:/image octavia-amphora 
     export DISTRIBUTION="ubuntu-minimal" && \
     export DISTRIBUTION_RELEASE="'$DISTR'" && \
     export BRANCH="stable/$VERSION" && \
+
+    # Legacy+Uefi bios boot support, adding haproxy logrotate,
+    # adding disabling haproxy logging, installing mc
+    export DIB_LOCAL_ELEMENTS="block-device-efi haproxy-logrotate disable-haproxy-logging mc" && \
+    export DIB_LOCAL_ELEMENTS_PATH="/patch" && \
+
     bash diskimage-create.sh \
     -a amd64 \
     -b haproxy \
